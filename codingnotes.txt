@@ -1,0 +1,34 @@
+conda codes:
+
+# To activate this environment, use
+#
+#     $ conda activate line-bot-env
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+
+
+
+
+Channel access token (long-lived) 
+NvXHSPCDi6py44u4NgrWgahVHfxAjX9dLG4JZtNTfLXEA1LtwhEF4kOQ3F1zhGMrcK7jBU+UqmKIteFcpswRsOfSCHyVYiCTVFGBy2dGsx5GbmPjQ8OzMOXZ+zmOEVpCuoWGAOJZLHNahnhvzlSucwdB04t89/1O/w1cDnyilFU=
+
+Channel secret c749fff4b2508936fee2d32212ce3b7e
+
+
+
+conda activate line-bot-env
+
+
+ngrok                                                                                                   (Ctrl+C to quit)                                                                                                                        
+Sign up to try new private endpoints https://ngrok.com/new-features-update?ref=private                                                                                                                                                          
+Session Status                online                                                                                    
+Account                       dajotter@gmail.com (Plan: Free)                                                           
+Version                       3.19.0                                                                                    
+Region                        Japan (jp)                                                                                
+Latency                       42ms                                                                                      
+Web Interface                 http://127.0.0.1:4040                                                                     
+Forwarding                    https://6b93-112-105-0-242.ngrok-free.app -> http://localhost:8000                                                                                                                                                
+Connections                   ttl     opn     rt1     rt5     p50     p90                                                                             
+                               0       0       0.00    0.00    0.00    0.00                                                                                                                               
