@@ -4,7 +4,12 @@ from linebot.v3.webhook import WebhookHandler
 from linebot.v3.exceptions import InvalidSignatureError
 from linebot.v3.models import TextMessage, MessageEvent
 
-import os  # For environment variables
+import os
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8080))
+    app.run(host="0.0.0.0", port=port)
+
 
 # Get credentials from environment variables
 ACCESS_TOKEN = "NvXHSPCDi6py44u4NgrWgahVHfxAjX9dLG4JZtNTfLXEA1LtwhEF4kOQ3F1zhGMrcK7jBU+UqmKIteFcpswRsOfSCHyVYiCTVFGBy2dGsx5GbmPjQ8OzMOXZ+zmOEVpCuoWGAOJZLHNahnhvzlSucwdB04t89/1O/w1cDnyilFU="
