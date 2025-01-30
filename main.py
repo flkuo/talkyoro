@@ -5,6 +5,9 @@ from linebot.v3.exceptions import InvalidSignatureError
 from linebot.v3.models import TextMessage, MessageEvent
 
 import os
+import sys
+print(sys.path)
+
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8080))
