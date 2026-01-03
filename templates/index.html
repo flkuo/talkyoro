@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Knowledge Hub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --brand-dark: #1a1a1a;
+            --brand-blue: #005a8b;
+            --accent-gray: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Professional Header Style (MIT/KFF Inspired) */
+        .top-utility {
+            background: var(--brand-dark);
+            color: white;
+            padding: 5px 0;
+            font-size: 0.8rem;
+        }
+
+        .main-nav {
+            border-bottom: 3px solid var(--brand-blue);
+            padding: 20px 0;
+            background: white;
+            sticky: top;
+        }
+
+        .nav-item-link {
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--brand-dark);
+            text-decoration: none;
+            padding: 0 15px;
+            font-size: 0.9rem;
+        }
+
+            .nav-item-link:hover {
+                color: var(--brand-blue);
+            }
+
+        /* Hero/Title Section */
+        .hero-section {
+            padding: 60px 0;
+            background-color: var(--accent-gray);
+            border-bottom: 1px solid #e1e1e1;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            border-left: 8px solid var(--brand-blue);
+            padding-left: 20px;
+        }
+
+        /* Information Grid */
+        .info-section {
+            padding: 50px 0;
+        }
+
+        .section-header {
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--brand-blue);
+            margin-bottom: 30px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .resource-card {
+            border: none;
+            border-radius: 0;
+            background: white;
+            transition: all 0.2s;
+            border-left: 1px solid #eee;
+            padding-left: 20px;
+            margin-bottom: 30px;
+        }
+
+            .resource-card:hover {
+                border-left: 5px solid var(--brand-blue);
+            }
+
+        .resource-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .resource-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .resource-desc {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .cat-icon {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            margin-bottom: 15px;
+            filter: grayscale(100%);
+            transition: 0.3s;
+        }
+
+        .resource-card:hover .cat-icon {
+            filter: grayscale(0%);
+        }
+
+        .footer-minimal {
+            background: var(--brand-dark);
+            color: #999;
+            padding: 40px 0;
+            font-size: 0.85rem;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-utility">
+        <div class="container d-flex justify-content-end">
+            {% if current_user.is_authenticated %}
+            <span class="me-3">System Administrator: {{ current_user.username }}</span>
+            <a href="/add_category" class="text-white">Management Console</a> |
+            <a href="/logout" class="text-white ms-2">Logout</a>
+            {% else %}
+            <a href="/login" class="text-white">Staff Login</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <nav class="main-nav">
+        <div class="container d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+                <h2 class="m-0 fw-bold" style="letter-spacing: -1px;">CENTRAL<span class="text-primary">POLICY</span></h2>
+            </div>
+            <div class="d-none d-lg-block">
+                {% for cat in categories %}
+                <a href="#section-{{ cat.id }}" class="nav-item-link">{{ cat.name }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <div class="container">
+            <h1 class="hero-title">Health Policy & Clinical Guidance <span class="text-muted">2026</span></h1>
+            <p class="lead text-muted mt-3">Comprehensive independent source for clinical research, data-driven insights, and staff protocols.</p>
+        </div>
+    </header>
+
+    <div class="container info-section">
+        {% for cat in categories %}
+        <div class="row mb-5" id="section-{{ cat.id }}">
+            <div class="col-12">
+                <h4 class="section-header">{{ cat.name }} Resources</h4>
+            </div>
+            <div class="row">
+                {% for sub in cat.subcategories %}
+                <div class="col-md-4">
+                    <div class="resource-card">
+                        <a href="{{ sub.link_url if sub.link_url else '#' }}" class="resource-link" target="_blank">
+                            {% if sub.image_file %}
+                            <img src="{{ url_for('static', filename='uploads/' + sub.image_file) }}" class="cat-icon">
+                            {% endif %}
+                            <div class="resource-title">{{ sub.name }}</div>
+                            <p class="resource-desc">Access clinical documentation, assessment tools, and validated data features for this protocol.</p>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <footer class="footer-minimal">
+        <div class="container text-center">
+            <p>&copy; 2026 Clinical Health Management System. All rights reserved. <br> Independent Research & Policy Education Platform.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
