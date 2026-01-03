@@ -1,4 +1,5 @@
 import os
+from flask import Flask, render_template  # and your other imports
 # Get the database URL from Render environment variables
 # If it doesn't exist (local), use the local site.db file
 database_url = os.environ.get('DATABASE_URL')
@@ -90,5 +91,3 @@ if __name__ == '__main__':
             db.session.add(User(username='admin', password=generate_password_hash('1234')))
             db.session.commit()
     app.run(debug=True)
-    with app.app_context():
-    db.create_all()
