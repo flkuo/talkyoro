@@ -90,3 +90,5 @@ if __name__ == '__main__':
             db.session.add(User(username='admin', password=generate_password_hash('1234')))
             db.session.commit()
     app.run(debug=True)
+    with app.app_context():
+    db.create_all()
